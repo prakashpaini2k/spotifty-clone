@@ -3,6 +3,7 @@ import { useStateProvider } from '../utils/StateProvider'
 import axios from 'axios'
 import { reducerCases } from '../utils/constants'
 import styled from 'styled-components'
+import Card from './card'
 
 
 const Library = () => {
@@ -16,8 +17,8 @@ const Library = () => {
                 },
             })
             const { items } = response.data
-            const playlists = items.map(({ name, id ,images }) => {
-                return { name, id, images }
+            const playlists = items.map(({ name, id ,images, href,type }) => {
+                return { name, id, images, href,type }
             })
             dispatch({ type: reducerCases.SET_USER_PLAYLISTS, playlists })
         }
@@ -29,8 +30,8 @@ const Library = () => {
                 },
             })
             const { artists } = response.data
-            const followedArtists = artists.items.map(({ name, id ,images})=>{
-                return { name, id, images }
+            const followedArtists = artists.items.map(({ name, id, images, href,type})=>{
+                return { name, id, images, href,type }
             })
             dispatch({type: reducerCases.SET_FOLLOWED_ARTIST, followedArtists})
 
@@ -38,14 +39,17 @@ const Library = () => {
         getFollowedArtist()
         getUserPlaylist()
     }, [token, dispatch])
+    const handleclick = (href,val) => {
+        dispatch({ type: reducerCases.SET_CONTENT_TYPE, contentHref:href, contentType:val})
+    }
 
     return (
         <Container>
             <ul>
-                {userPlaylists && userPlaylists.map(({ name, id, images}) =>
-                     (<li   key={id}> <img width={40} src={images[1].url} alt={'img'} /><div className='text'> {name} <strong>Artist</strong></div> </li>))}
-                {followedArtists && followedArtists.map(({ name, id, images}) => 
-                    (<li   key={id}> <img className='img' width={40} src={images[1].url} alt={'img'} /> <div className='text'> {name} <strong>Artist</strong></div> </li>))}
+                {userPlaylists && userPlaylists.map(({ name, id, images, href}) =>
+                     (<li onClick={()=>{handleclick(href,'playlist')}} key={id}> <img width={40} src={images[1]?.url ? images[1]?.url : images[0]?.url} alt={'img'} /><div className='text'> {name} <strong>Playlist</strong></div> </li>))}
+                {followedArtists && followedArtists.map(({ name, id, images, href}) => 
+                    (<li  onClick={()=>{handleclick(href,'artist')}} key={id}> <img className='img' width={40} src={images[0]?.url} alt={'img'} /> <div className='text'> {name} <strong>Artist</strong></div> </li>))}
             </ul>
         </Container>
     )
@@ -57,6 +61,7 @@ height: 100%;
     height:calc(100vh - 375px);
     overflow-y:auto;
     padding:0 !important;
+    gap:.5rem !important;
     &::-webkit-scrollbar{
         width:10px;
         height:10px;
@@ -70,7 +75,7 @@ height: 100%;
         font-weight:normal;
         padding:.5rem;
         border-radius :8px;
-        gap:.5rem;
+        
         &:hover{
             background-color: #292929;
         }

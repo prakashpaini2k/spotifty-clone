@@ -1,15 +1,21 @@
 import React from 'react'
 import styled from 'styled-components'
+import { useStateProvider } from '../utils/StateProvider'
+import { reducerCases } from '../utils/constants'
 
 const List = (props) => {
     const { data } = props;
+    const [, dispatch] = useStateProvider();
+    const handleClick = (href,type) => {
+        dispatch({type: reducerCases.SET_CONTENT_TYPE,contentHref:href,contentType:type})
+    }
     return (
         <Container> 
               <div className='list'>
-                    {data && data.map(({ name,id,images }) => (
-                    <div className='list__row' key={id}>
-                        <img src={images[0].url} alt={name} />
-                        <span>{name}</span>
+                    {data && data.map(({ name,id,images,href,type }) => (
+                    <div onClick={()=>{handleClick(href,type)}} className='list__row' key={id}>
+                        <img className={type} src={images[0].url} alt={name} />
+                        <span title={name}>{name}</span>
                     </div>))}
                 </div>
         </Container>
@@ -39,11 +45,22 @@ const Container = styled.div`
         padding:1rem;
         border-radius :8px;
         &:hover{
-        background-color: #292929;}
+            background-color: #292929;
+        }
         img{
             width:160px;
             height:160px;
         }
-    }   `
+    }
+    .profile,.artist{
+        border-radius:50%;
+    }
+    span{
+        width:160px;
+        overflow:hidden;
+        white-space:nowrap;
+        text-overflow:ellipsis;
+    }      
+`
 
 export default List

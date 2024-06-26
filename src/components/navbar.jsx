@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 import { IoSearch } from 'react-icons/io5'
-import { CgProfile } from 'react-icons/cg'
 import { useStateProvider } from '../utils/StateProvider'
 import { reducerCases } from '../utils/constants'
 
@@ -13,9 +12,8 @@ const Navbar = () => {
   }
   return (
     <Container>
-      <div onClick={handleClick} className='profile'>
-        <CgProfile />
-        <span>{userInfo?.userName}</span>
+      <div title={userInfo?.name} onClick={handleClick} className='profile'>
+        <img src={userInfo?.images[0].url} alt="profile" />
       </div>
       {appState === 'search' && 
       (<div className='search'>
@@ -24,13 +22,6 @@ const Navbar = () => {
         </div>
         <input type='text' placeholder='Search' />
       </div>)}
-      {appState === 'home' && (
-        <h3>Home</h3>
-      )}
-      {appState === 'profile' && (
-        <h3>Profile</h3>
-      )}
-    
     </Container>
   )
 }
@@ -45,7 +36,7 @@ padding:1rem;
   .icon{
     position:absolute;
     scale:1.3;
-    top:22px;
+    top:14px;
     left:14px;
     cursor:pointer;
   }
@@ -57,25 +48,30 @@ padding:1rem;
     background-color:#242424;
     color:white;
     padding:.5rem 1rem .5rem 3rem;
-    margin:.5rem 0;
+    margin:0;
   } 
 }
   .profile{
     display:flex;
     cursor:pointer;
-    align-items:center;
-    gap:.5rem;
-    padding: .5rem 1rem ;
+    padding: .5rem ;
     border-radius:2rem;
     background-color:#242424;
     span{
       font-weight:bold;
     }  
-      svg{
+      img{
+        height:20px;
+        width:20px;
+        border-radius:50%;
+        object-fit:cover;
         cursor:pointer;
         scale:1.2;
       }
 
+  }
+  h3{
+    margin:0;
   }
 `
 export default Navbar

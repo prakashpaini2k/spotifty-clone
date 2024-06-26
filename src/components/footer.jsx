@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import { useStateProvider } from '../utils/StateProvider'
 
 const Footer = () => {
   return (

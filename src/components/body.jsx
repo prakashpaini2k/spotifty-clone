@@ -3,11 +3,15 @@ import Navbar from './navbar'
 import styled from 'styled-components'
 import { useStateProvider } from '../utils/StateProvider'
 import Featured from './featured'
-import Category from './category'
+import Search from './search'
+import Artist from './artist'
+import Playlist from './playlist'
+import Album from './album'
 import Profile from './profile'
+import Track from './track'
 
 const Body = () => {
-  const [{appState},dispatch] = useStateProvider();
+  const [{appState,contentType},dispatch] = useStateProvider();
   useEffect(() => {},[dispatch])
   return (
     <Container>
@@ -16,8 +20,12 @@ const Body = () => {
       </div>
       <div className='body'>
         {appState === 'home' && <Featured></Featured>}
-        {appState === 'search' && <Category></Category>}
         {appState === 'profile' && <Profile> </Profile>}
+        {appState === 'search' && <Search></Search>}
+        {appState === 'content' && contentType === 'artist' && <Artist></Artist>}
+        {appState === 'content' && contentType === 'playlist' && <Playlist></Playlist>}
+        {appState === 'content' && contentType === 'album' && <Album></Album>}
+        {appState === 'content' && contentType === 'song' && <Track></Track>}
       </div>
     </Container>
   )

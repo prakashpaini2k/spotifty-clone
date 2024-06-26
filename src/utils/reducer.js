@@ -8,13 +8,19 @@ export const initialState = {
     currentPlaylist: null,
     currentAlbum: null,
     currentTrack: null,
+    artistInfo: null,
+    artistAlbums: null,
+    artistTopTracks: null,
     featuredPlaylists: null,
     featuredAlbums: null,
     appState :'home',
+    searchQuery: 'dilbar',
+    searchResult: null,
+    contentType: null,
+    contentHref: null,
     userTopTracks: null,
     userTopArtists: null,
     followedArtists : null
-
 }
 const reducer = (state, action) => {
     switch (action.type) {
@@ -33,7 +39,54 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 appState: action.appState
+            }
+        case reducerCases.SET_SEARCH_QUERY:
+            return {
+                ...state,
+                searchQuery: action.searchQuery
+            }
+        case reducerCases.SET_SEARCH_RESULT:
+            return {
+                ...state,
+                searchResult: action.searchResult
+            }
+        case reducerCases.SET_CURRENT_TRACK:
+            return {
+                ...state,
+                currentTrack: action.currentTrack
+            }
+        case reducerCases.SET_CURRENT_ALBUM:
+            return {
+                ...state,
+                currentAlbum: action.album
+            }
+        case reducerCases.SET_CURRENT_PLAYLIST: 
+            return {
+                ...state,
+                currentPlaylist: action.playlist
+            } 
+        case reducerCases.SET_ARTIST_INFO: 
+            return{
+                ...state,
+                artistInfo: action.artistInfo
+            }
+        case reducerCases.SET_ARTIST_TOP_TRACKS:
+            return {
+                ...state,
+                artistTopTracks: action.artistTopTracks
+            }
+        case reducerCases.SET_ARTIST_ALBUMS:
+            return {
+                ...state,
+                artistAlbums: action.artistAlbums
             }    
+        case reducerCases.SET_CONTENT_TYPE:
+            return {
+                ...state,
+                appState : 'content',
+                contentType: action.contentType,
+                contentHref : action.contentHref
+            } 
         case reducerCases.SET_USER_PLAYLISTS:
             return {
                 ...state,
@@ -68,8 +121,8 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 followedArtists: action.followedArtists
-            }    
-  
+            }   
+               
         case reducerCases.SET_PLAYING:
             return {
                 ...state,

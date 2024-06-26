@@ -20,7 +20,6 @@ export default function Login() {
             'playlist-read-collaborative',
             'streaming',
             'user-library-read',
-            'user-library-modify',
             'user-read-playback-position',
             'user-read-playback-state',
             'user-read-currently-playing',

@@ -18,8 +18,10 @@ const Main = () => {
                 }
             })
             const userInfo = {
-                userid : data.id,
-                userName : data.display_name,
+                id : data.id,
+                name : data.display_name,
+                images : data.images,
+                type : 'profile'
             }
             dispatch({ type: reducerCases.SET_USER, userInfo})
         }
@@ -50,15 +52,39 @@ const Container = styled.div`
         img{
             border-radius:8px;
         }
+        h3{
+            font-size:1.25rem;
+            &:first-child{
+                margin-top:0;
+            }
+        }
+        ul{
+            list-style:none;
+            display:flex;
+            flex-direction:column;
+            gap:1.5rem;
+            padding:.5rem;
+            margin:0;
+        }
+        li{ 
+            display:flex;
+            align-items:center;
+            gap:1rem;
+            font-size:1rem;
+            font-weight:bold;
+            cursor:pointer;
+            color:#a7a7a7;
+        }
+                   
     }
     
     .footer-wrapper {
-    position:fixed;
-    bottom:0;
-    height:75px;
-    width:100%;
-    margin-left:-.5rem;
-    background-color:#000;
+        position:fixed;
+        bottom:0;
+        height:75px;
+        width:100%;
+        margin-left:-.5rem;
+        background-color:#000;
     } `
 
 

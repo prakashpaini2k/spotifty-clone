@@ -15,13 +15,13 @@ const Category = () => {
                     "Content-Type": "application/json",
                 }
             })
-            console.log(response.data,'browseCategories');
             const { categories } = response.data
             const browseCategories = categories.items.map((item)=>{
                 return {
                     id: item.id,
                     name: item.name,
-                    images: item.icons
+                    images: item.icons,
+                    href: item.href
                 }
             })
 
@@ -39,11 +39,6 @@ const Category = () => {
   )
 }
 
-const Container = styled.div`
-    h3{
-        margin-top:0;
-    }   
-
-`
+const Container = styled.div``
 
 export default Category

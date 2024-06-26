@@ -15,32 +15,35 @@ const Featured = () => {
             "Content-Type": "application/json",
           }
         })
-        console.log(response.data,'featuredPlaylists');
         const { playlists } = response.data
         const featuredPlaylists = playlists.items.map((item) => {
           return {
             id: item.id,
             name: item.name,
-            images: item.images
+            images: item.images,
+            href : item.href,
+            type: 'playlist',
           }
         })
-        dispatch({ type: reducerCases.SET_FEATURED_PLAYLISTS, featuredPlaylists })
+        dispatch({type: reducerCases.SET_FEATURED_PLAYLISTS, featuredPlaylists })
       }
       getFeaturedPlaylist()
-  
+
       const getFeaturedAlbums = async () => {
         const response = await axios.get('https://api.spotify.com/v1/browse/new-releases', {
           headers: {
             Authorization: "Bearer " + token,
             "Content-Type": "application/json", }
-        })
 
+        })
         const { albums } = response.data
         const featuredAlbums = albums.items.map((item) => {
           return {
             id: item.id,
             name: item.name,
-            images: item.images
+            images: item.images,
+            href : item.href,
+            type: 'album',
           }
         })
         dispatch({ type: reducerCases.SET_FEATURED_ALBUMS, featuredAlbums })
@@ -56,10 +59,6 @@ const Featured = () => {
   </Container>
   )
 }
-const Container = styled.div`
-    h3{
-        font-size:1.5rem;
-    }        
-`
+const Container = styled.div``
 
 export default Featured
