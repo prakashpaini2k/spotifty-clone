@@ -3,7 +3,6 @@ import { useStateProvider } from '../utils/StateProvider'
 import axios from 'axios'
 import { reducerCases } from '../utils/constants'
 import styled from 'styled-components'
-import Card from './card'
 
 
 const Library = () => {
@@ -40,7 +39,7 @@ const Library = () => {
         getUserPlaylist()
     }, [token, dispatch])
     const handleclick = (href,val) => {
-        dispatch({ type: reducerCases.SET_CONTENT_TYPE, contentHref:href, contentType:val})
+        dispatch({ type: reducerCases.SET_APPSTATE, contentHref:href, appState:val})
     }
 
     return (

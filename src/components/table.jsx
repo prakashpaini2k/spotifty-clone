@@ -13,7 +13,7 @@ const Table = (props) => {
         return minutes + ':' + (seconds < 10? '0' : '') + seconds;;
     }
     const handleClick = (href,type) => {
-        dispatch({type: reducerCases.SET_CONTENT_TYPE,contentHref:href,contentType:type})
+        dispatch({type: reducerCases.SET_APPSTATE,contentHref:href,appState:type})
     }
     return (
         <Container>
@@ -30,7 +30,7 @@ const Table = (props) => {
                 <div className='grid' key={id}>
                     <div className='track'>
                        <div className='index'>{index + 1}</div>
-                        {images && <img src={images[0].url} alt={name} />}
+                        {images && <img src={images[0]?.url} alt={name} />}
                         <div className='content'>
                             <div onClick={()=>{handleClick(href,'song')}} className='title'>{name}</div>
                             <div onClick={()=>{handleClick(artistHref,'artist')}} className='artist'>{artist}</div>

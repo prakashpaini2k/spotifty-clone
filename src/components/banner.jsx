@@ -12,7 +12,9 @@ const banner = (props) => {
     return (
         <Container>
             <div className="banner">
-                <img className={data?.type} width={120} height={120} src={data?.type === ('profile' || 'artist')  ? data?.images[1].url : data?.images[0].url} alt="img" />
+                {(data?.images[1]?.url || data?.images[0]?.url) && 
+                    <img className={data?.type} width={120} height={120} src={data?.type === ('profile' || 'artist')  ? data?.images[1]?.url : data?.images[0]?.url} alt="img" />
+                }
                 <div className="desc">
                     <div>{data?.type}</div>
                     <h1>{data?.name}</h1>
@@ -26,7 +28,7 @@ const banner = (props) => {
                     }
                     {data?.type === 'song' &&
                         <div  className="info">
-                            {data?.artists && <span>{data?.artists[0].name}</span>}
+                            {data?.artist && <span>{data?.artist}</span>}
                             {data?.album && <span>· {data?.album}</span>}
                             {data?.duration && <span>· {secondsToMinutes(data?.duration)}</span>}
                         </div>

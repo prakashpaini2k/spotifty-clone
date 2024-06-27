@@ -11,7 +11,7 @@ import Profile from './profile'
 import Track from './track'
 
 const Body = () => {
-  const [{appState,contentType},dispatch] = useStateProvider();
+  const [{appState},dispatch] = useStateProvider();
   useEffect(() => {},[dispatch])
   return (
     <Container>
@@ -22,10 +22,10 @@ const Body = () => {
         {appState === 'home' && <Featured></Featured>}
         {appState === 'profile' && <Profile> </Profile>}
         {appState === 'search' && <Search></Search>}
-        {appState === 'content' && contentType === 'artist' && <Artist></Artist>}
-        {appState === 'content' && contentType === 'playlist' && <Playlist></Playlist>}
-        {appState === 'content' && contentType === 'album' && <Album></Album>}
-        {appState === 'content' && contentType === 'song' && <Track></Track>}
+        {appState === 'artist' && <Artist></Artist>}
+        {appState === 'playlist' && <Playlist></Playlist>}
+        {appState === 'album' && <Album></Album>}
+        {appState === 'song' && <Track></Track>}
       </div>
     </Container>
   )

@@ -67,34 +67,38 @@ const Search = () => {
             }
             dispatch({ type: reducerCases.SET_SEARCH_RESULT, searchResult })
         }
-        getSearchResult()
+        if (searchQuery) {
+            getSearchResult()
+        }
 
     }, [token, searchQuery, dispatch])
 
     return (
         <Container>
-            <div className="flex">
-                <div className="box1">
-                    <h3>Top result</h3>
-                    <TopCard data={searchResult?.tracks[0]}></TopCard>
-                </div>
-                <div className="box2">
-                    <h3>Songs</h3>
-                    <div className='cards'>
-                        {searchResult?.tracks && searchResult.tracks.map((track) => <Card data={track} key={track.id} ></Card>)}
+            {searchResult && (
+                <>
+                    <div className="flex">
+                        <div className="box1">
+                            <h3>Top result</h3>
+                            <TopCard data={searchResult?.tracks[0]}></TopCard>
+                        </div>
+                        <div className="box2">
+                            <h3>Songs</h3>
+                            <div className='cards'>
+                                {searchResult?.tracks && searchResult.tracks.map((track) => <Card data={track} key={track.id} ></Card>)}
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-
-            <h3>Artist</h3>
-            <List data={searchResult?.artists}></List>
-            <br></br>
-            <h3>Album</h3>
-            <List data={searchResult?.albums}></List>
-            <br></br>
-            <h3>Playlist</h3>
-            <List data={searchResult?.playlists}></List>
-
+                    <h3>Artist</h3>
+                    <List data={searchResult?.artists}></List>
+                    <br></br>
+                    <h3>Album</h3>
+                    <List data={searchResult?.albums}></List>
+                    <br></br>
+                    <h3>Playlist</h3>
+                    <List data={searchResult?.playlists}></List>
+                </>
+            )}
         </Container>
 
     )

@@ -7,7 +7,7 @@ const Card = (props) => {
     const { data } = props;
     const [, dispatch] = useStateProvider();
     const handleClick = (href, type) => {
-        dispatch({type: reducerCases.SET_CONTENT_TYPE,contentHref:href,contentType:type})
+        dispatch({type: reducerCases.SET_APPSTATE,contentHref:href,appState:type})
     }
     return (
         <Container>

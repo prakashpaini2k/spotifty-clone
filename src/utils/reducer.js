@@ -8,19 +8,22 @@ export const initialState = {
     currentPlaylist: null,
     currentAlbum: null,
     currentTrack: null,
+    currentTrackUri: null,
     artistInfo: null,
     artistAlbums: null,
     artistTopTracks: null,
     featuredPlaylists: null,
     featuredAlbums: null,
     appState :'home',
-    searchQuery: 'dilbar',
+    searchQuery: '',
     searchResult: null,
     contentType: null,
     contentHref: null,
     userTopTracks: null,
     userTopArtists: null,
-    followedArtists : null
+    followedArtists : null,
+    playerInfo: null,
+    isPlaying: false
 }
 const reducer = (state, action) => {
     switch (action.type) {
@@ -38,7 +41,8 @@ const reducer = (state, action) => {
         case reducerCases.SET_APPSTATE:
             return {
                 ...state,
-                appState: action.appState
+                appState: action.appState,
+                contentHref: action.contentHref
             }
         case reducerCases.SET_SEARCH_QUERY:
             return {
@@ -53,7 +57,9 @@ const reducer = (state, action) => {
         case reducerCases.SET_CURRENT_TRACK:
             return {
                 ...state,
-                currentTrack: action.currentTrack
+                currentTrack: action.currentTrack,
+                currentTrackUri: `spotify:track:${action.currentTrack?.id}`,
+                isPlaying: true
             }
         case reducerCases.SET_CURRENT_ALBUM:
             return {
@@ -80,13 +86,6 @@ const reducer = (state, action) => {
                 ...state,
                 artistAlbums: action.artistAlbums
             }    
-        case reducerCases.SET_CONTENT_TYPE:
-            return {
-                ...state,
-                appState : 'content',
-                contentType: action.contentType,
-                contentHref : action.contentHref
-            } 
         case reducerCases.SET_USER_PLAYLISTS:
             return {
                 ...state,

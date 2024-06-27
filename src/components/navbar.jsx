@@ -1,26 +1,41 @@
 import React from 'react'
 import styled from 'styled-components'
 import { IoSearch } from 'react-icons/io5'
+import { CgProfile } from 'react-icons/cg';
 import { useStateProvider } from '../utils/StateProvider'
 import { reducerCases } from '../utils/constants'
-
 
 const Navbar = () => {
   const [{ userInfo,appState },dispatch] = useStateProvider();
   const handleClick = () => {
     dispatch({type:reducerCases.SET_APPSTATE,appState:'profile'})
   }
+  const handleChange = (e) => {
+      setTimeout(() => {
+        dispatch({type:reducerCases.SET_SEARCH_QUERY,searchQuery:e.target.value})
+      })
+      if (e.target.value==='') {
+        setTimeout(() => {
+          dispatch({type:reducerCases.SET_SEARCH_RESULT,searchResult:null})
+        },2000)
+      }
+  }
   return (
     <Container>
       <div title={userInfo?.name} onClick={handleClick} className='profile'>
-        <img src={userInfo?.images[0].url} alt="profile" />
+        {!(userInfo?.images[0]?.url) &&
+          <CgProfile />
+        }
+        {userInfo?.images[0]?.url &&
+          <img src={userInfo?.images[0]?.url} alt="profile" />
+        }
       </div>
       {appState === 'search' && 
       (<div className='search'>
         <div className='icon'>
           <IoSearch />
         </div>
-        <input type='text' placeholder='Search' />
+        <input type='text' onChange={handleChange} placeholder='Search' />
       </div>)}
     </Container>
   )

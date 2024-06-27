@@ -7,14 +7,14 @@ const List = (props) => {
     const { data } = props;
     const [, dispatch] = useStateProvider();
     const handleClick = (href,type) => {
-        dispatch({type: reducerCases.SET_CONTENT_TYPE,contentHref:href,contentType:type})
+        dispatch({type: reducerCases.SET_APPSTATE,contentHref:href,appState:type})
     }
     return (
         <Container> 
               <div className='list'>
                     {data && data.map(({ name,id,images,href,type }) => (
                     <div onClick={()=>{handleClick(href,type)}} className='list__row' key={id}>
-                        <img className={type} src={images[0].url} alt={name} />
+                        <img className={type} src={images[0]?.url} alt={name} />
                         <span title={name}>{name}</span>
                     </div>))}
                 </div>

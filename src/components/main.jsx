@@ -31,9 +31,7 @@ const Main = () => {
         <Container>
             <Sidebar></Sidebar>
             <Body></Body>
-            <div className='footer-wrapper'>
-                <Footer></Footer>
-            </div>
+            <Footer></Footer>
         </Container>
     )
 }
@@ -77,15 +75,7 @@ const Container = styled.div`
         }
                    
     }
-    
-    .footer-wrapper {
-        position:fixed;
-        bottom:0;
-        height:75px;
-        width:100%;
-        margin-left:-.5rem;
-        background-color:#000;
-    } `
+ `
 
 
 export default Main
