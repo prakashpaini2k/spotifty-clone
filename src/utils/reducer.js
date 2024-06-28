@@ -19,6 +19,7 @@ export const initialState = {
     searchResult: null,
     contentType: null,
     contentHref: null,
+    recommendedTracks: null,
     userTopTracks: null,
     userTopArtists: null,
     followedArtists : null,
@@ -71,6 +72,11 @@ const reducer = (state, action) => {
                 ...state,
                 currentPlaylist: action.playlist
             } 
+        case reducerCases.SET_RECOMMENDED_TRACKS:
+            return {
+                ...state,
+                recommendedTracks: action.recommendedTracks
+            }    
         case reducerCases.SET_ARTIST_INFO: 
             return{
                 ...state,

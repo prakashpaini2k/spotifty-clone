@@ -1,12 +1,18 @@
 import React from 'react'
 import styled from 'styled-components'
+import { useStateProvider } from '../utils/StateProvider'
+import { reducerCases } from '../utils/constants'
 
-const banner = (props) => {
+const Banner = (props) => {
     const { data } = props;
+    const [ , dispatch] = useStateProvider();
     const secondsToMinutes = (duration) => {
         const minutes = Math.floor(duration / 60000);
         const seconds = (duration % 60).toFixed(0);
         return minutes + ':' + (seconds < 10? '0' : '') + seconds;;
+    }
+    const handleClick = (href,type) => {
+        dispatch({type: reducerCases.SET_APPSTATE,contentHref:href,appState:type})
     }
  
     return (
@@ -28,8 +34,8 @@ const banner = (props) => {
                     }
                     {data?.type === 'song' &&
                         <div  className="info">
-                            {data?.artist && <span>{data?.artist}</span>}
-                            {data?.album && <span>· {data?.album}</span>}
+                            {data?.artist && <span className='artist' onClick={() => { handleClick(data?.artistHref,'artist') }}>{data?.artist}</span>}
+                            {data?.album && <span className='album' onClick={() => { handleClick(data?.albumHref,'album') }}>· {data?.album}</span>}
                             {data?.duration && <span>· {secondsToMinutes(data?.duration)}</span>}
                         </div>
                     }
@@ -68,6 +74,12 @@ const Container = styled.div`
         align-items:center;
         gap:.25rem;
     }
+    .artist,.album{
+        cursor:pointer;
+        &:hover{
+            text-decoration:underline;
+        }
+    }
     img{
       align-self:end;
       &.profile,&.artist{
@@ -77,4 +89,4 @@ const Container = styled.div`
   }
 `
 
-export default banner
+export default Banner

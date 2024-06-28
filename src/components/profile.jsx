@@ -10,7 +10,7 @@ const Profile = () => {
     const [{ token, userTopArtists, userTopTracks, userInfo }, dispatch] = useStateProvider();
     useEffect(() => {
         const getTopArtist = async () => {
-            const response = await axios.get('https://api.spotify.com/v1/me/top/artists', {
+            const response = await axios.get('https://api.spotify.com/v1/me/top/artists?limit=10', {
                 headers: {
                     Authorization: "Bearer " + token,
                     "Content-Type": "application/json",

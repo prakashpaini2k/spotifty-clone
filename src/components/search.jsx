@@ -19,7 +19,6 @@ const Search = () => {
                         "Content-Type": "application/json",
                     },
                 })
-            console.log(response.data);
             const searchResult = {
                 tracks: response.data.tracks.items.map((item) => {
                     return {
