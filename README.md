@@ -1,8 +1,9 @@
-# Getting Started with Create React App
 
 This project is deployed here https://spotify-demo-pp2k.netlify.app/
+For the app to work poperly the user needs to be added in userbase as per spotify developer policy you may contact me @ prakashpaini125@gmail.com
 
-## Available Scripts
+
+## Available 
 
 In the project directory, you can run:
 
