@@ -52,7 +52,7 @@ const Artist = () => {
     }
     getArtistTopTracks() 
     const getArtistsAlbums = async () => {
-      const response = await axios.get(`${contentHref}/albums`, {
+      const response = await axios.get(`${contentHref}/albums?limit=10`, {
         headers: {
           Authorization: "Bearer " + token,
           "Content-Type": "application/json",

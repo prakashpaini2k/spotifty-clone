@@ -6,7 +6,11 @@ import { reducerCases } from '../utils/constants'
 const TopCard = (props) => {
     const {data} = props
     const [, dispatch] = useStateProvider();
-    const handleClick = (href, type) => {
+    const handleClick = (href, type,event) => {
+        console.log(event);
+        if (type === 'artist') {
+            event.stopPropagation();
+        }
         dispatch({type: reducerCases.SET_APPSTATE,contentHref:href,appState:type})
     }
   return (
@@ -17,7 +21,7 @@ const TopCard = (props) => {
                 <div className="title">{data?.name}</div>
                 <div className="desc">
                     <span  className='type'>{data?.type} · </span>
-                    <span onClick={() => { handleClick(data?.artistHref,'artist') }} className='artist'>{data?.artist}</span>
+                    <span onClick={(event) => { handleClick(data?.artistHref,'artist',event) }} className='artist'>{data?.artist}</span>
                 </div>
             </div>
         </div>
