@@ -23,7 +23,7 @@ const Banner = (props) => {
                 }
                 <div className="desc">
                     <div>{data?.type}</div>
-                    <h1>{data?.name}</h1>
+                    <h1 title={data?.name}>{data?.name}</h1>
                     {data?.description && <p>{data?.description}</p>}
                     {data?.type !== 'song' &&
                         <div  className="info">
@@ -64,6 +64,11 @@ const Container = styled.div`
     h1{
         font-size:3rem;
         line-height:3rem;
+        width: 60vw;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+}
 
     }
     p{

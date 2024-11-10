@@ -26,7 +26,7 @@ const Table = (props) => {
                 <div>Time</div>
 
             </div>
-            {data && data.map(({ name, id, images, album, duration, artist, href,albumHref,artistHref }, index) => (
+            {data && data.map(({ name, id, images, album, duration, artist, href, albumHref, artistHref }, index) => (
                 <div className='grid' key={id}>
                     <div className='track'>
                        <div className='index'>{index + 1}</div>

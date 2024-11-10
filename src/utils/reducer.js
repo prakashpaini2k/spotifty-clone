@@ -8,6 +8,7 @@ export const initialState = {
     currentPlaylist: null,
     currentAlbum: null,
     currentTrack: null,
+    lyrics : null,
     currentTrackUri: null,
     artistInfo: null,
     artistAlbums: null,
