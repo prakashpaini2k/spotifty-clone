@@ -57,9 +57,9 @@ const Track = () => {
       dispatch({ type: reducerCases.SET_RECOMMENDED_TRACKS, recommendedTracks: tracks });
       
     }
-    if(currentTrack?.id){
-      setRecommendedTracks()
-    }
+    // if(currentTrack?.id){
+    //   setRecommendedTracks()
+    // }
     
   },[currentTrack,token,dispatch])
 
@@ -67,8 +67,8 @@ const Track = () => {
     <>
       <Banner data={currentTrack}></Banner>
       <br></br>
-      <h3>Recommended</h3>
-      <Table data={recommendedTracks}></Table>
+      {/* <h3>Recommended</h3>
+      <Table data={recommendedTracks}></Table> */}
     </>
   )
 }

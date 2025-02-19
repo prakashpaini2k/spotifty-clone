@@ -27,7 +27,7 @@ const Featured = () => {
         })
         dispatch({type: reducerCases.SET_FEATURED_PLAYLISTS, featuredPlaylists })
       }
-      getFeaturedPlaylist()
+      // getFeaturedPlaylist()
 
       const getFeaturedAlbums = async () => {
         const response = await axios.get('https://api.spotify.com/v1/browse/new-releases', {
@@ -52,8 +52,8 @@ const Featured = () => {
     }, [token,dispatch])
   return (
     <Container>
-    <h3>Featured Playlists</h3>
-    <List data={featuredPlaylists}></List>
+    {/* <h3>Featured Playlists</h3> */}
+    {/* <List data={featuredPlaylists}></List> */}
     <h3>Featured Albums</h3>
     <List data={featuredAlbums}></List>
   </Container>

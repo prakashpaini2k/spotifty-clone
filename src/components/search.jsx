@@ -20,7 +20,7 @@ const Search = () => {
                     },
                 })
             const searchResult = {
-                tracks: response.data.tracks.items.map((item) => {
+                tracks: response.data.tracks.items?.filter(item => item !== null).map((item ) => {
                     return {
                         id: item.id,
                         name: item.name,
@@ -34,7 +34,7 @@ const Search = () => {
                         type: 'song'
                     }
                 }),
-                albums: response.data.albums.items.map((item) => {
+                albums: response.data.albums.items?.filter(item => item !== null).map((item) => {
                     return {
                         id: item.id,
                         name: item.name,
@@ -45,7 +45,7 @@ const Search = () => {
                         type: 'album'
                     }
                 }),
-                artists: response.data.artists.items.map((item) => {
+                artists: response.data.artists.items?.filter(item => item !== null).map((item) => {
                     return {
                         id: item.id,
                         name: item.name,
@@ -54,7 +54,8 @@ const Search = () => {
                         type: 'artist'
                     }
                 }),
-                playlists: response.data.playlists.items.map((item) => {
+                
+                playlists: response.data.playlists.items?.filter(item => item !== null).map((item) => {
                     return {
                         id: item.id,
                         name: item.name,
@@ -84,7 +85,7 @@ const Search = () => {
                         <div className="box2">
                             <h3>Songs</h3>
                             <div className='cards'>
-                                {searchResult?.tracks && searchResult.tracks.map((track) => <Card data={track} key={track.id} ></Card>)}
+                                {searchResult?.tracks && searchResult.tracks.filter(item => item !== null).map((track) => <Card data={track} key={track.id} ></Card>)}
                             </div>
                         </div>
                     </div>
